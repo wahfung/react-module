@@ -329,8 +329,8 @@ const TextGeneration: React.FC = () => {
                 timestamp: timestamp || new Date(),
               };
               setMessages(prev => [...prev, aiMessage]);
-            } catch (error) {
-              console.error('Code review failed:', error);
+            } catch (reviewError) {
+              console.error('Code review failed:', reviewError);
               const aiMessage: Message = {
                 id: `error-${Date.now()}`,
                 content: '代码审查处理过程中发生错误，请重试或联系管理员。',
@@ -352,8 +352,8 @@ const TextGeneration: React.FC = () => {
             };
             setMessages(prev => [...prev, aiMessage]);
           }
-        } catch (error) {
-          console.error('Message processing error:', error);
+        } catch (processError) {
+          console.error('Message processing error:', processError);
           // 确保任何错误都会清除加载状态
           setIsReviewing(false);
         }
@@ -396,18 +396,18 @@ const TextGeneration: React.FC = () => {
   }, [agentType]);
 
   // 辅助函数，用于处理 Apollo 错误
-  const renderError = useCallback((error: ApolloError | undefined) => {
-    if (!error) return null;
+  const renderError = useCallback((apolloError: ApolloError | undefined) => {
+    if (!apolloError) return null;
 
     return (
       <div style={styles.error}>
         <span style={styles.errorIcon}>⚠️</span>
         <div>
           <strong>出错了！</strong>
-          <p style={{ margin: '4px 0' }}>{error.message}</p>
-          {error.networkError && (
+          <p style={{ margin: '4px 0' }}>{apolloError.message}</p>
+          {apolloError.networkError && (
             <p style={{ margin: '4px 0', fontSize: '0.85rem' }}>
-              网络错误: {error.networkError.message}
+              网络错误: {apolloError.networkError.message}
             </p>
           )}
         </div>
