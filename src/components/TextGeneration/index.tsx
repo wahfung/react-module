@@ -35,7 +35,7 @@ const formatMessage = (content: string, agentType: AgentType): React.ReactNode =
   try {
     // 尝试解析代码块和高亮部分
     const formattedContent: React.ReactNode[] = [];
-    let currentIndex = 0;
+    const currentIndex = 0;
 
     // 预先编译正则表达式
     const issuePattern = /(❗\s*Issue:|⚠️\s*Warning:|✅\s*Good:|📝\s*Suggestion:)([^❗⚠️✅📝]+)/g;
@@ -133,7 +133,7 @@ const formatMessage = (content: string, agentType: AgentType): React.ReactNode =
 
     // 限制缓存大小，避免内存泄漏
     if (messageCache.size > 100) {
-      const firstKey = messageCache.keys().next().value;
+      const firstKey = messageCache.keys().next().value as string;
       messageCache.delete(firstKey);
     }
 
