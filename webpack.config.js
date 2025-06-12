@@ -44,7 +44,9 @@ const webpackBaseConfig = {
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
+      // 同步导入
       filename: modeflag ? 'styles/[name].[contenthash:5].css' : 'styles/[name].css',
+      // 异步导入
       chunkFilename: modeflag ? 'styles/[name].[contenthash:5].css' : 'styles/[name].css',
       ignoreOrder: false,
     }),
