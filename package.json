@@ -53,6 +53,8 @@
     "yargs-parser": "^22.0.0"
   },
   "dependencies": {
+    "@apollo/client": "^3.13.8",
+    "@mastra/client-js": "^0.10.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   }

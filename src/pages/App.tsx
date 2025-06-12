@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import TextGeneration from '@components/TextGeneration';
 
 const App = () => {
   return (
     <>
-      <h1 className="text-4xl text-[#09F]">🐻 App component rendered</h1>
+      <TextGeneration />
     </>
   );
 };
